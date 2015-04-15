@@ -31,6 +31,7 @@ import java.util.List;
  */
 public abstract class CacheManager {
     private final static Logger logger = LoggerFactory.getLogger(CacheManager.class);
+    private boolean doPurge = true;
 
     List<CacheEventListener> listeners = new ArrayList<CacheEventListener>();
 
@@ -54,7 +55,14 @@ public abstract class CacheManager {
 
     public abstract void doFlush(CacheEvent event);
 
-
+    public void setPurgeEnabled(boolean flag) {
+    	doPurge = flag;
+    }
+    
+    public boolean purgeEnabled() {
+    	return doPurge;
+    }
+    
     /**
      * Flash cache.
      *

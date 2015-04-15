@@ -119,7 +119,7 @@ public enum QueryCache {
      * @param tableName table name whose caches are to be purged.
      */
     public void purgeTableCache(String tableName) {
-        if(enabled  && Registry.instance().getMetaModel(tableName).cached()){
+        if(enabled  && Registry.instance().getMetaModel(tableName).cached() && cacheManager.purgeEnabled()){
             cacheManager.flush(new CacheEvent(tableName, getClass().getName()));
         }
     }
